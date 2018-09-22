@@ -279,7 +279,7 @@ codestoreplace = {
   Email: '<input type="email" name="emailaddress">',
   File: '<input type="file" name="myFile">',
   Hidden: '<input type="hidden" id="custId" name="custId" value="3487">',
-  Image: '<input type="image" src="img_submit.gif" alt="Submit">',
+  Image: '<input type="image" src="submit_image.png" alt="Submit">',
   Month: '<input type="month" name="bdaymonth">',
   Number: '<input type="number" name="quantity" min="1" max="5">',
   Password: '<input type="password" name="pwd">',
