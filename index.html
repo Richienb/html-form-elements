@@ -5,89 +5,448 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="theme-color" content="#3F51B5">
+
     <title>HTML Form Elements</title>
     <meta name="description" content="An easy way to preview all the different HTML form elements with copyable snippets of code.">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="shortcut icon" href="favicon.ico">
 
-    <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons|Roboto'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-red.min.css'>
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/getmdl-select@2.0.1/getmdl-select.min.css'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css'>
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@1.1.1/dist/material-components-web.min.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            --mdc-theme-primary: #3f51b5;
+            --mdc-theme-secondary: #f44336;
+            background-color: #fafafa;
+        }
+
+        body .ribbon {
+            top: 0;
+            z-index: -1;
+            background-color: var(--mdc-theme-primary, #6200ee);
+            width: 100%;
+            height: 10rem;
+            position: absolute;
+        }
+
+        body .mdc-select__menu {
+            width: calc(100% - 112px);
+        }
+
+        body .main-content {
+            background-color: white;
+            border-radius: 4px;
+            margin: 1.5rem;
+            padding: 2rem;
+            min-height: calc(100vh - 7rem);
+        }
+
+        body .main-content .gen__choose {
+            width: 100%;
+        }
+
+        body .main-content .gen__code {
+            border-radius: 4px;
+            padding: 8px;
+            background-color: #eeeeee;
+            display: none;
+        }
+
+        body .main-content .mdc-button.mdc-button--raised {
+            background-color: var(--mdc-theme-secondary, #018786);
+        }
+
+        body .main-content .theme-toggle {
+            position: absolute;
+            top: 0.5rem;
+            right: 3rem;
+        }
+
+        body .main-content a {
+            color: #3f51b5;
+        }
+
+        body .main-content ::-moz-selection {
+            background-color: #3f51b5;
+            color: white;
+        }
+
+        body .main-content ::selection {
+            background-color: #3f51b5;
+            color: white;
+        }
+
+        body .main-content #carbonads {
+            margin-bottom: 1rem;
+            float: right;
+            border-radius: 6px;
+            box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+            font-family: Roboto, sans-serif;
+            line-height: 28px;
+            padding: 8px;
+            box-sizing: border-box;
+            transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media only screen and (max-width: 425px) {
+            body .main-content #carbonads {
+                width: 100%;
+            }
+        }
+
+        body .main-content #carbonads:hover {
+            box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+        }
+
+        body .main-content #carbonads .carbon-wrap .carbon-img>img {
+            margin-right: 9px;
+            float: left;
+        }
+
+        @media only screen and (max-width 400px) {
+            body .main-content #carbonads .carbon-wrap .carbon-img>img {
+                width: auto;
+                max-width: 130px;
+                height: 50px;
+            }
+        }
+
+        body .main-content #carbonads .carbon-wrap .carbon-text {
+            color: #637381;
+            font-weight: 300;
+            display: block;
+            font-size: 12px;
+            line-height: 15.96px;
+            margin-bottom: 0;
+            margin-top: 8px;
+            text-decoration: none;
+        }
+
+        body .main-content #carbonads .carbon-poweredby {
+            color: #c5cdd0;
+            font-size: 8px;
+            font-weight: 500;
+            line-height: 10px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        body.setting--dark {
+            background-color: #212121 !important;
+            --mdc-theme-text-primary-on-background: white;
+            --mdc-theme-text-secondary-on-background: white;
+            --mdc-theme-text-icon-on-background: white;
+        }
+
+        body.setting--dark::-webkit-scrollbar {
+            background-color: #505050;
+        }
+
+        body.setting--dark .main-content {
+            color: white;
+            background-color: #303030;
+        }
+
+        body.setting--dark .gen__code {
+            background-color: #181818;
+        }
+
+        body.setting--dark .mdc-select__selected-text {
+            color: white !important;
+        }
+
+        body.setting--dark .mdc-text-field__input,
+        body.setting--dark .mdc-floating-label {
+            color: white !important;
+        }
+
+        body.setting--dark .mdc-notched-outline__leading,
+        body.setting--dark .mdc-notched-outline__notch,
+        body.setting--dark .mdc-notched-outline__trailing {
+            border-color: white !important;
+        }
+
+        body.setting--dark #carbonads .carbon-text {
+            color: white !important;
+        }
+
+        body.setting--dark a {
+            color: #5c6bc0;
+        }
+
+        body.setting--dark ::-moz-selection {
+            background-color: #c5cae9;
+            color: black;
+        }
+
+        body.setting--dark ::selection {
+            background-color: #c5cae9;
+            color: black;
+        }
+
+        body.setting--animate-colours {
+            transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.setting--animate-colours .main-content,
+        body.setting--animate-colours a,
+        body.setting--animate-colours ::-moz-selection {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-property: background-color, color;
+        }
+
+        body.setting--animate-colours .main-content,
+        body.setting--animate-colours a,
+        body.setting--animate-colours ::selection {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-property: background-color, color;
+        }
+
+        body::-webkit-scrollbar {
+            border-radius: 100px;
+            background-color: transparent;
+            width: 8px;
+            height: 8px;
+            overflow: visible;
+        }
+
+        body::-webkit-scrollbar-button {
+            height: 0;
+            width: 0;
+        }
+
+        body::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 100px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: solid transparent;
+            border-width: 1px 1px 1px 6px;
+            min-height: 28px;
+            padding: 100px 0 0;
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        body::-webkit-scrollbar-thumb:active {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        body::-webkit-scrollbar-track {
+            background-clip: padding-box;
+            border: solid transparent;
+            border-width: 0 0 0 4px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+
 </head>
 
 <body>
-    <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
-        <div class="demo-ribbon"></div>
-        <main class="demo-main mdl-layout__content">
-            <div class="demo-container mdl-grid">
-                <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-                <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-                    <header>
-                        <h3>HTML Form Elements</h3>
-                        <noscript>
-                            <h4><i class="material-icons">directions_run</i> Please enable JavaScript to use this website.</h4></noscript>
-                    </header>
-                    <section>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
-                            <input type="text" value="" class="mdl-textfield__input" id="sample6" onchange="selectchanged(this.value)" readonly>
-                            <input type="hidden" value="" name="sample6">
-                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                            <label for="sample6" class="mdl-textfield__label">Form Element</label>
-                            <ul for="sample6" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                <li class="mdl-menu__item" data-val="button" data-selected="true">Button</li>
-                                <li class="mdl-menu__item" data-val="checkbox">Checkbox</li>
-                                <li class="mdl-menu__item" data-val="colour">Colour picker</li>
-                                <li class="mdl-menu__item" data-val="date">Date</li>
-                                <li class="mdl-menu__item" data-val="datetime-local">Date and time</li>
-                                <li class="mdl-menu__item" data-val="email">Email</li>
-                                <li class="mdl-menu__item" data-val="file">File</li>
-                                <li class="mdl-menu__item" data-val="hidden">Hidden</li>
-                                <li class="mdl-menu__item" data-val="image">Image</li>
-                                <li class="mdl-menu__item" data-val="month">Month</li>
-                                <li class="mdl-menu__item" data-val="number">Number</li>
-                                <li class="mdl-menu__item" data-val="password">Password</li>
-                                <li class="mdl-menu__item" data-val="radio">Radio button</li>
-                                <li class="mdl-menu__item" data-val="range">Range</li>
-                                <li class="mdl-menu__item" data-val="reset">Reset</li>
-                                <li class="mdl-menu__item" data-val="search">Search</li>
-                                <li class="mdl-menu__item" data-val="submit">Submit</li>
-                                <li class="mdl-menu__item" data-val="tel">Telephone number</li>
-                                <li class="mdl-menu__item" data-val="text">Text</li>
-                                <li class="mdl-menu__item" data-val="time">Time</li>
-                                <li class="mdl-menu__item" data-val="url">Url</li>
-                                <li class="mdl-menu__item" data-val="week">Week and year</li>
-                            </ul>
-                        </div>
-                    </section>
-                    <section>
-                        <h4 id="codefor">Code for a ...</h4>
-                        <pre class="prettyprint" id="code">
+    <div class="ribbon mdc-elevation--z4"></div>
+    <main class="main-content mdc-typography mdc-elevation--z8">
+        <script async src="https://cdn.carbonads.com/carbon.js?serve=CK7I6K3E&amp;placement=wwwrichie-bendallml" id="_carbonads_js"></script>
+        <button class="theme-toggle mdc-fab mdc-fab--mini" aria-label="Toggle theme" data-mdc-auto-init="MDCRipple">
+            <svg class="theme-toggle__svg mdc-fab__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0V0z" />
+                <path
+                    d="M11 7l-3.2 9h1.9l.7-2h3.2l.7 2h1.9L13 7h-2zm-.15 5.65L12 9l1.15 3.65h-2.3zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zm-2 5.79V18h-3.52L12 20.48 9.52 18H6v-3.52L3.52 12 6 9.52V6h3.52L12 3.52 14.48 6H18v3.52L20.48 12 18 14.48z" />
+            </svg>
+        </button>
+        <h1 class="mdc-typography--headline2">HTML Form Elements</h1>
+        <p class="mdc-typography--body1">An easy way to preview all the different HTML form elements with copyable snippets of code.</p>
+        <div class="gen__choose mdc-select mdc-select--outlined" data-mdc-auto-init="MDCSelect">
+            <input type="hidden" name="enhanced-select">
+            <i class="mdc-select__dropdown-icon"></i>
+            <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text"></div>
+            <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">
+                <ul class="mdc-list">
+                    <li class="mdc-list-item" data-value="button" role="option" data-mdc-auto-init="MDCRipple">Button</li>
+                    <li class="mdc-list-item" data-value="checkbox" role="option" data-mdc-auto-init="MDCRipple">Checkbox</li>
+                    <li class="mdc-list-item" data-value="colour" role="option" data-mdc-auto-init="MDCRipple">Colour picker</li>
+                    <li class="mdc-list-item" data-value="date" role="option" data-mdc-auto-init="MDCRipple">Date</li>
+                    <li class="mdc-list-item" data-value="datetime-local" role="option" data-mdc-auto-init="MDCRipple">Date and time</li>
+                    <li class="mdc-list-item" data-value="email" role="option" data-mdc-auto-init="MDCRipple">Email</li>
+                    <li class="mdc-list-item" data-value="file" role="option" data-mdc-auto-init="MDCRipple">File</li>
+                    <li class="mdc-list-item" data-value="hidden" role="option" data-mdc-auto-init="MDCRipple">Hidden</li>
+                    <li class="mdc-list-item" data-value="image" role="option" data-mdc-auto-init="MDCRipple">Image</li>
+                    <li class="mdc-list-item" data-value="month" role="option" data-mdc-auto-init="MDCRipple">Month</li>
+                    <li class="mdc-list-item" data-value="number" role="option" data-mdc-auto-init="MDCRipple">Number</li>
+                    <li class="mdc-list-item" data-value="password" role="option" data-mdc-auto-init="MDCRipple">Password</li>
+                    <li class="mdc-list-item" data-value="radio" role="option" data-mdc-auto-init="MDCRipple">Radio button</li>
+                    <li class="mdc-list-item" data-value="range" role="option" data-mdc-auto-init="MDCRipple">Range</li>
+                    <li class="mdc-list-item" data-value="reset" role="option" data-mdc-auto-init="MDCRipple">Reset</li>
+                    <li class="mdc-list-item" data-value="search" role="option" data-mdc-auto-init="MDCRipple">Search</li>
+                    <li class="mdc-list-item" data-value="submit" role="option" data-mdc-auto-init="MDCRipple">Submit</li>
+                    <li class="mdc-list-item" data-value="tel" role="option" data-mdc-auto-init="MDCRipple">Telephone number</li>
+                    <li class="mdc-list-item" data-value="text" role="option" data-mdc-auto-init="MDCRipple">Text</li>
+                    <li class="mdc-list-item" data-value="time" role="option" data-mdc-auto-init="MDCRipple">Time</li>
+                    <li class="mdc-list-item" data-value="url" role="option" data-mdc-auto-init="MDCRipple">Url</li>
+                    <li class="mdc-list-item" data-value="week" role="option" data-mdc-auto-init="MDCRipple">Week and year</li>
+                </ul>
+            </div>
+            <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                    <label class="mdc-floating-label">HTML Form Element</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+            </div>
+        </div>
+        <div class="mdc-menu-surface--anchor">
+            <pre class="gen__code prettyprint"></pre>
+            <div class="gen__copy-menu mdc-menu mdc-menu-surface" tabindex="-1" data-mdc-auto-init="MDCMenu">
+                <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+                    <li class="gen__copy-button mdc-list-item" role="menuitem" data-clipboard-target=".gen__code" data-mdc-auto-init="MDCRipple">
+                        <span class="mdc-list-item__text">Copy to clipboard</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-</pre>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="clipboardsave()">
-                            <i class="material-icons">file_copy</i> Copy to clipboard
-                        </button>
-                    </section>
+        <div class="gen__demo"></div>
 
-                    <section>
-                        <h4>Demo</h4>
-                        <div id="out"></div>
-                    </section>
+        <div class="gen__copied mdc-snackbar mdc-snackbar--leading" data-mdc-auto-init="MDCSnackbar">
+            <div class="mdc-snackbar__surface">
+                <div class="mdc-snackbar__label" role="status" aria-live="polite">
+                    Successfully copied to clipboard
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+        <div class="gen__failcopied mdc-snackbar mdc-snackbar--leading" data-mdc-auto-init="MDCSnackbar">
+            <div class="mdc-snackbar__surface">
+                <div class="mdc-snackbar__label" role="status" aria-live="polite">
+                    Failed to copy to clipboard
+                </div>
+            </div>
+        </div>
+    </main>
 
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <script src="https://unpkg.com/material-components-web@1.1.1/dist/material-components-web.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/getmdl-select@2.0.1/getmdl-select.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'></script>
+    <script>
+        mdc.autoInit();
 
-    <script src="js/index.js"></script>
+        Array.prototype.cycle = function(str) {
+            var i = this.indexOf(str);
+            if (i === -1) return undefined;
+            return this[(i + 1) % this.length];
+        };
+
+        var handleTheme = function handleTheme() {
+            switch (localStorage.getItem("theme")) {
+                case "light":
+                    $(".theme-toggle__svg").html(
+                        "<path fill=\"none\" d=\"M0 0h24v24H0V0z\"/><path d=\"M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zm-2 5.79V18h-3.52L12 20.48 9.52 18H6v-3.52L3.52 12 6 9.52V6h3.52L12 3.52 14.48 6H18v3.52L20.48 12 18 14.48zM12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z\"/><circle cx=\"12\" cy=\"12\" r=\"2.5\"/>"
+                        );
+                    $("body").removeClass("setting--dark");
+                    break;
+
+                case "dark":
+                    $(".theme-toggle__svg").html(
+                        "<path fill=\"none\" d=\"M0 0h24v24H0V0z\"/><path d=\"M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zm-2 5.79V18h-3.52L12 20.48 9.52 18H6v-3.52L3.52 12 6 9.52V6h3.52L12 3.52 14.48 6H18v3.52L20.48 12 18 14.48zM12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z\"/>"
+                        );
+                    $("body").addClass("setting--dark");
+                    break;
+
+                default:
+                    $(".theme-toggle__svg").html(
+                        "<path fill=\"none\" d=\"M0 0h24v24H0V0z\"/><path d=\"M11 7l-3.2 9h1.9l.7-2h3.2l.7 2h1.9L13 7h-2zm-.15 5.65L12 9l1.15 3.65h-2.3zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zm-2 5.79V18h-3.52L12 20.48 9.52 18H6v-3.52L3.52 12 6 9.52V6h3.52L12 3.52 14.48 6H18v3.52L20.48 12 18 14.48z\"/>"
+                        );
+                    var hours = new Date().getHours();
+                    $("body").toggleClass("setting--dark", hours <= 6 || hours >= 20 || window.matchMedia("(prefers-color-scheme: dark)").matches || window.matchMedia("(-ms-high-contrast: white-on-black)").matches);
+            }
+        };
+
+        if (["auto", "light", "dark"].indexOf(localStorage.getItem("theme")) === -1) localStorage.setItem("theme", "auto");
+        handleTheme();
+        $("body").addClass("setting--animate-colours");
+        $(".theme-toggle").click(function() {
+            localStorage.setItem("theme", ["auto", "light", "dark"].cycle(localStorage.getItem("theme")));
+            handleTheme();
+        }); // Codes to use
+
+        var codes = {
+            button: "<input type=\"button\" value=\"Button\" onclick=\"foo()\">",
+            checkbox: "<input type=\"checkbox\" name=\"vehicle1\" value=\"Bike\">I have a bike<br>",
+            colour: "<input type=\"color\" name=\"favcolor\">",
+            date: "<input type=\"date\" name=\"bday\">",
+            "datetime-local": "<input type=\"datetime-local\" name=\"bdaytime\">",
+            email: "<input type=\"email\" name=\"emailaddress\">",
+            file: "<input type=\"file\" name=\"myFile\">",
+            hidden: "<input type=\"hidden\" id=\"custId\" name=\"custId\" value=\"3487\">",
+            image: "<input type=\"image\" src=\"submit_image.png\" alt=\"Submit\">",
+            month: "<input type=\"month\" name=\"bdaymonth\">",
+            number: "<input type=\"number\" name=\"quantity\" min=\"1\" max=\"5\">",
+            password: "<input type=\"password\" name=\"pwd\">",
+            radio: "<input type=\"radio\" name=\"gender\" value=\"male\">Male<br>",
+            range: "<input type=\"range\" name=\"points\" min=\"0\" max=\"10\">",
+            reset: "<input type=\"reset\">",
+            search: "<input type=\"search\" name=\"searchbox\">",
+            submit: "<input type=\"submit\">",
+            tel: "<input type=\"tel\" name=\"usrtel\">",
+            text: "<input type=\"text\" name=\"fname\">",
+            time: "<input type=\"time\" name=\"usr_time\">",
+            url: "<input type=\"url\" name=\"homepage\">",
+            week: "<input type=\"week\" name=\"week_year\">"
+        }; // Code ecaper
+
+        String.prototype.escape = function() {
+            var tagsToReplace = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;"
+            };
+            return this.replace(/[&<>]/g, function(tag) {
+                return tagsToReplace[tag] || tag;
+            });
+        };
+
+        $(".gen__choose").get(0).MDCSelect.listen("MDCSelect:change", function() {
+            // When item selected prettify code and set demo
+            $(".gen__code").html(PR.prettyPrintOne(codes[$(".gen__choose").get(0).MDCSelect.value].escape()));
+            $(".gen__code").show();
+            $(".gen__demo").html(codes[$(".gen__choose").get(0).MDCSelect.value]);
+        }); // Copy to clipboard setup function
+
+        var setupCopy = function setupCopy(el) {
+            var clipboard = new ClipboardJS(el);
+            clipboard.on("success", function(e) {
+                $(".gen__copied").get(0).MDCSnackbar.open();
+                e.clearSelection();
+            });
+            clipboard.on("error", function(e) {
+                $(".gen__failcopied").get(0).MDCSnackbar.open();
+                e.clearSelection();
+            });
+        }; // Setup menu and copy to clipboard function
+
+
+        var setupCopyMenu = function setupCopyMenu(menu, region, copy) {
+            $(region).on("contextmenu", function(e) {
+                e.preventDefault();
+                $(menu).get(0).MDCMenu.open = true;
+            });
+            setupCopy(copy);
+        }; // Setup copy to clipboard and right click option
+
+
+        setupCopyMenu(".gen__copy-menu", ".gen__code", ".gen__copy-button");
+    </script>
+
 </body>
 
 </html>
